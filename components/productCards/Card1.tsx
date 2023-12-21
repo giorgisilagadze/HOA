@@ -2,6 +2,7 @@ import { MdLocalGasStation } from "react-icons/md";
 import { MdOutlineSpeed } from "react-icons/md";
 import { LuCalendarDays } from "react-icons/lu";
 import { IoIosArrowRoundForward } from "react-icons/io";
+import Link from "next/link";
 
 export default function Card1() {
   const properties: Contact[] = [
@@ -24,7 +25,11 @@ export default function Card1() {
 
   return (
     <div className="w-[289px] rounded-[4px] shadow-product pb-4">
-      <img src="../images/car.png" alt="product" className="cursor-pointer" />
+      <Link href="/cars/single">
+        {" "}
+        <img src="../images/car.png" alt="product" className="cursor-pointer" />
+      </Link>
+
       <div className="w-full mt-2 flex flex-col gap-2">
         <div className="w-full flex justify-between items-center px-4">
           <p className="text-[#022FB0]">De Lorean Smth Model</p>

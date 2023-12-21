@@ -2,7 +2,7 @@ import { FaTiktok } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
 
-const contact: Contact[] = [
+export const contact: Contact[] = [
   {
     id: 1,
     text: "#HoaCars",
@@ -20,7 +20,7 @@ const contact: Contact[] = [
   },
 ];
 
-const phoneNumbs: PhoneNumb[] = [
+export const phoneNumbs: PhoneNumb[] = [
   {
     id: 1,
     number: "2 11 11 50",

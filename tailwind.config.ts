@@ -24,6 +24,7 @@ const config: Config = {
     boxShadow: {
       thin: "rgba(2, 47, 176, 0.15) 0px 1px 10px 0px",
       product: "0px 2px 10px 0px rgba(109, 134, 206, 0.25)",
+      input: "-2px -2px 4px 0px rgba(2, 47, 176, 0.30) inset",
     },
   },
   plugins: [],

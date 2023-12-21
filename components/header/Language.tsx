@@ -8,7 +8,7 @@ export default function Language() {
 
   return (
     <div
-      className="relative cursor-pointer bg-white"
+      className="relative cursor-pointer bg-white hover:shadow-product duration-200 rounded-[30px]"
       onClick={() => setIsLangCLicked(!isLangClicked)}
     >
       <div className="flex items-center gap-1 py-[8px] px-4 rounded-[30px] border border-[#022FB0]">

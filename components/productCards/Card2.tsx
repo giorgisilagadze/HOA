@@ -27,7 +27,7 @@ export default function Card2() {
       <img
         src="../images/car2.png"
         alt="product-image"
-        className="w-[186px] h-[174px] rounded-tl-[4px] rounded-bl-[4px]"
+        className="w-[194px] h-[174px] rounded-tl-[4px] rounded-bl-[4px]"
       />
       <div className="py-2 px-4 flex flex-col gap-1">
         <div>

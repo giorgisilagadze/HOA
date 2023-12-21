@@ -9,8 +9,8 @@ import { Autoplay, Navigation } from "swiper/modules";
 export default function Slider() {
   return (
     <div className="w-full h-[619px] relative">
-      <IoIosArrowBack className="text-[60px] text-white absolute top-[50%] left-10 translate-y-[-50%] z-[99] image-swiper-button-prev cursor-pointer" />
-      <IoIosArrowBack className="text-[60px] text-white absolute top-[50%] right-10 translate-y-[-50%] z-[99] rotate-180 image-swiper-button-next cursor-pointer" />
+      <IoIosArrowBack className="text-[60px] text-white absolute top-[50%] left-10 translate-y-[-50%] z-[98] image-swiper-button-prev cursor-pointer" />
+      <IoIosArrowBack className="text-[60px] text-white absolute top-[50%] right-10 translate-y-[-50%] z-[98] rotate-180 image-swiper-button-next cursor-pointer" />
       <Swiper
         // autoplay={{
         //   delay: 2000,

@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <main className="pb-6">
       <Slider />
-      <div className="w-full px-[56px] flex justify-center mt-[-100px] relative z-[99]">
+      <div className="w-full px-[56px] flex justify-center mt-[-100px] relative z-[97]">
         <div className="w-full max-w-[1328px] bg-white rounded-[30px] py-8 flex flex-col gap-[42px]">
           <div className="pl-[44px] pr-[56px]">
             <Filter />
