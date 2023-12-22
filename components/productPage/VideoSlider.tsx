@@ -32,11 +32,18 @@ export default function VideoSlider() {
       >
         {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
           <SwiperSlide key={item} className="w-[23.7%] rounded-[8px]">
-            <video className="custom-video" controls>
-              <source src="../video.mp4" type="video/mp4" />
-              {/* <source src="movie.ogg" type="video/ogg" /> */}
-              Your browser does not support the video tag.
-            </video>
+            {/* <video className="custom-video" controls>
+              <source src="../video.mp4" type="video/mp4" /> */}
+            {/* <source src="movie.ogg" type="video/ogg" /> */}
+            {/* Your browser does not support the video tag. */}
+            {/* </video>  */}
+            <iframe
+              width="full"
+              height="180"
+              src="https://www.youtube.com/embed/c0AjyW3Cj7s?si=_Ej2RYeaAQDwKQoD"
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            ></iframe>
           </SwiperSlide>
         ))}
       </Swiper>
