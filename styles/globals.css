@@ -38,3 +38,7 @@ body {
   border-top: 20px solid transparent;
   border-left: 20px solid #D9D9D9;
 }
+
+.custom-width {
+  width: calc(100vw - 290px);
+}

@@ -48,14 +48,20 @@ const countries: Country[] = [
   },
 ];
 
-export default function FilterInput() {
+interface Prop {
+  width: string;
+  ml: string;
+  border: string;
+}
+
+export default function FilterInput({ width, ml, border }: Prop) {
   const [isClicked, setIsClicked] = useState(false);
   const [checked, setChecked] = useState("ქვეყანა");
   const [country, setCountry] = useState(countries);
   return (
-    <div className="w-[186px] h-[38px] relative ml-3">
+    <div className={`w-${width} h-[38px] relative ml-${ml}`}>
       <div
-        className="w-full h-full py-[7px] px-2 rounded-[4px] border border-[#EEE] cursor-pointer"
+        className={`w-full h-full py-[7px] px-2 rounded-[4px] border border-[${border}] cursor-pointer`}
         onClick={() => setIsClicked(!isClicked)}
       >
         <p className="text-[14px] leading-[22px]">{checked}</p>
@@ -68,14 +74,14 @@ export default function FilterInput() {
       />
       <div
         className={`${
-          isClicked ? "h-[200px] py-1 px-1 border border-[#EEE]" : "h-0"
+          isClicked ? `h-[200px] py-1 px-1 border border-[${border}]` : "h-0"
         } bg-white absolute z-[99] top-[40px] rounded-[4px] left-0 w-full duration-100 overflow-y-auto`}
       >
         {isClicked && (
           <>
             <input
               type="text"
-              className="w-full border-b border-[#eee] rounded-[4px] outline-none text-[12px] leading-4 py-2 px-3"
+              className={`w-full border-b border-[${border}] rounded-[4px] outline-none text-[12px] leading-4 py-2 px-3`}
               placeholder="ძებნა"
               onChange={(e) => {
                 e.preventDefault();

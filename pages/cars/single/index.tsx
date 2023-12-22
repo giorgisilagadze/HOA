@@ -125,7 +125,7 @@ export default function SingleCar() {
           მანქანის დეტალები
         </h1>
         {details.map((item) => (
-          <div>
+          <div key={item.id}>
             <div
               className="w-full flex items-center justify-between"
               key={item.id}

@@ -19,3 +19,9 @@ interface Country {
   id: number;
   country: string;
 }
+
+interface AdminNav {
+  id: number;
+  title: string;
+  link: string;
+}
