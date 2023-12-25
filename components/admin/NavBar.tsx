@@ -1,6 +1,9 @@
 import { GiExitDoor } from "react-icons/gi";
 
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useContext } from "react";
+import { PrimaryContext } from "@/utils/MainContext";
 
 const nav: AdminNav[] = [
   {
@@ -26,6 +29,14 @@ const nav: AdminNav[] = [
 ];
 
 export default function NavBar({ children }: any) {
+  const route = useRouter();
+  const { setAdminToken } = useContext(PrimaryContext);
+
+  const logOut = () => {
+    route.push("/admin");
+    setAdminToken(null);
+    localStorage.clear();
+  };
   return (
     <div>
       <div className="w-full h-[56px] px-5 flex justify-between bg-white items-center border-b border-slate-300">
@@ -34,7 +45,10 @@ export default function NavBar({ children }: any) {
           <p className="text-[14px] leading-[22px]">HOA</p>
         </div>
         <div className="w-full h-[57px] flex justify-end items-center">
-          <div className="p-2 rounded-[50%] hover:bg-slate-300 duration-200 cursor-pointer">
+          <div
+            className="p-2 rounded-[50%] hover:bg-slate-300 duration-200 cursor-pointer"
+            onClick={logOut}
+          >
             <GiExitDoor className="text-[24px]" />
           </div>
         </div>

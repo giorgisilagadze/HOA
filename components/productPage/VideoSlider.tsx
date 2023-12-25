@@ -21,7 +21,7 @@ export default function VideoSlider() {
       </div>
       <Swiper
         slidesPerView={4}
-        spaceBetween={20}
+        spaceBetween={30}
         modules={[Autoplay, Navigation]}
         className="mySwiper h-full duration-200 w-full"
         loop={true}
@@ -31,14 +31,14 @@ export default function VideoSlider() {
         }}
       >
         {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
-          <SwiperSlide key={item} className="w-[23.7%] rounded-[8px]">
+          <SwiperSlide key={item} className="w-[20%] rounded-[8px]">
             {/* <video className="custom-video" controls>
               <source src="../video.mp4" type="video/mp4" /> */}
             {/* <source src="movie.ogg" type="video/ogg" /> */}
             {/* Your browser does not support the video tag. */}
             {/* </video>  */}
             <iframe
-              width="full"
+              width="290"
               height="180"
               src="https://www.youtube.com/embed/c0AjyW3Cj7s?si=_Ej2RYeaAQDwKQoD"
               title="YouTube video player"

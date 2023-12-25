@@ -26,7 +26,7 @@ export default function Slider() {
         {[1, 2, 3].map((item) => (
           <SwiperSlide key={item}>
             <div className="relative h-full fullScreen">
-              <h1 className="xl:text-[64px] xl:leading-[80px] text-white absolute top-[230px] left-[112px] w-[650px]">
+              <h1 className="xl:text-[55px] xl:leading-[70px] text-white absolute top-[230px] left-[112px] w-[650px]">
                 მანქანები კორეიდან შენს სახლამდე
               </h1>
             </div>

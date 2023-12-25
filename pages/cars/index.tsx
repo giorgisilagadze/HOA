@@ -13,7 +13,6 @@ export default function Cars() {
           <Filter />
         </div>
         <div className="px-[56px] w-full flex flex-col gap-[18px]">
-          <h1 className="text-[28px] leading-[40px]">აღმოაჩინე ავტომობილი</h1>
           <div className="flex flex-wrap gap-5">
             {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((item: number) => (
               <Card1 key={item} />

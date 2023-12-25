@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { IoIosSearch } from "react-icons/io";
 import { MdOutlineSupportAgent } from "react-icons/md";
@@ -24,6 +24,11 @@ export default function Header() {
   const route = useRouter();
   const [page, setPage] = useState(route.asPath);
   const [isRequested, setIsRequested] = useState(false);
+
+  useEffect(() => {
+    setPage(route.asPath);
+  }, [route.asPath]);
+
   return (
     <>
       <header className="w-full px-[112px] py-4 flex justify-between items-center bg-white">
@@ -42,7 +47,7 @@ export default function Header() {
                 key={item.id}
                 onClick={() => setPage(item.link)}
               >
-                <p
+                <h6
                   className={`${
                     page == item.link
                       ? "border-b-[2px] border-[#022FB0] pb-1"
@@ -50,7 +55,7 @@ export default function Header() {
                   } cursor-pointer`}
                 >
                   {item.title}
-                </p>
+                </h6>
               </Link>
             ))}
           </div>
@@ -69,7 +74,7 @@ export default function Header() {
             onClick={() => setIsRequested(true)}
           >
             <MdOutlineSupportAgent />
-            <p className="text-[14px] leading-[22px]">მოითხოვე მანქანა</p>
+            <h6 className="text-[14px] leading-[22px]">მოითხოვე მანქანა</h6>
           </div>
           <Language />
         </div>

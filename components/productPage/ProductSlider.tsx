@@ -8,14 +8,14 @@ export default function ProductSlider() {
   let swiperRef = useRef<any>(null);
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
   return (
-    <div className="h-[450px] w-[66%] gap-[20px] flex items-center  max-xl:h-auto relative">
-      <div className="flex flex-col gap-1 w-[180px] h-full mx-0">
+    <div className="h-[500px] w-[75%] gap-[20px] flex items-center  max-xl:h-auto relative">
+      <div className="flex flex-col gap-1 w-[150px] h-full mx-0">
         <Swiper
           onSwiper={setThumbsSwiper}
           loop={true}
           direction={"vertical"}
           spaceBetween={10}
-          slidesPerView={3}
+          slidesPerView={4}
           freeMode={true}
           navigation={{
             nextEl: ".next",
@@ -23,15 +23,15 @@ export default function ProductSlider() {
           }}
           watchSlidesProgress={true}
           modules={[FreeMode, Navigation, Thumbs]}
-          className="mySwiper w-[180px] h-full mx-0"
+          className="mySwiper w-[150px] h-full mx-0"
         >
           {[1, 2, 3, 4, 5, 6, 7].map((item) => (
             <SwiperSlide key={item}>
               <div className=" rounded-lg flex items-center justify-center mx-0">
                 <img
-                  src="../images/car.png"
+                  src="../images/car.jpeg"
                   alt="#"
-                  className="h-[122px] w-full max-tiny:h-[70px] cursor-pointer object-contain rounded-[10px] "
+                  className="h-[105px] w-full max-tiny:h-[70px] cursor-pointer object-contain rounded-[10px] "
                 />
               </div>
             </SwiperSlide>
@@ -47,7 +47,7 @@ export default function ProductSlider() {
         </div>
       </div>
 
-      <div className="relative w-[75%]">
+      <div className="relative product-image">
         <Swiper
           loop={true}
           spaceBetween={10}
@@ -69,9 +69,9 @@ export default function ProductSlider() {
             <SwiperSlide key={item}>
               <div className="w-full h-full rounded-[12px] flex items-center justify-center overflow-hidden">
                 <img
-                  src="../images/car.png"
+                  src="../images/car.jpeg"
                   alt="#"
-                  className=" w-full h-[450px] rounded-[12px]"
+                  className=" w-full h-[500px] rounded-[12px] object-cover"
                 />
               </div>
             </SwiperSlide>

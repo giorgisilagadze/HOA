@@ -23,11 +23,11 @@ export default function Card2() {
   ];
 
   return (
-    <div className="flex items-center shadow-product rounded-[4px]">
+    <div className="flex w-[32.2%] items-center shadow-product rounded-[4px] bg-white">
       <img
-        src="../images/car2.png"
+        src="../images/car.jpeg"
         alt="product-image"
-        className="w-[194px] h-[174px] rounded-tl-[4px] rounded-bl-[4px]"
+        className="w-[194px] h-full rounded-tl-[4px] rounded-bl-[4px]"
       />
       <div className="py-2 px-4 flex flex-col gap-1">
         <div>

@@ -27,12 +27,22 @@ export default function Card1() {
     <div className="w-[289px] rounded-[4px] shadow-product pb-4">
       <Link href="/cars/single">
         {" "}
-        <img src="../images/car.png" alt="product" className="cursor-pointer" />
+        <img
+          src="../images/car.jpeg"
+          alt="product"
+          className="cursor-pointer"
+        />
       </Link>
 
       <div className="w-full mt-2 flex flex-col gap-2">
         <div className="w-full flex justify-between items-center px-4">
-          <p className="text-[#022FB0]">De Lorean Smth Model</p>
+          <Link href={"/cars/single"}>
+            {" "}
+            <p className="text-[#022FB0] cursor-pointer">
+              De Lorean Smth Model
+            </p>
+          </Link>
+
           <p className="text-[14px] leading-[22px]">HOA-123</p>
         </div>
         <hr className="w-full h-[1px] border-none bg-[#EEE]" />

@@ -4,8 +4,11 @@ import Filter from "@/components/filter/Filter";
 import Slider from "@/components/homePage/Slider";
 import Card1 from "@/components/productCards/Card1";
 import Card2 from "@/components/productCards/Card2";
+import axios from "axios";
 
-export default function Home() {
+export default function Home({ products }: any) {
+  console.log(products);
+
   return (
     <main className="pb-6">
       <Slider />
@@ -45,3 +48,16 @@ export default function Home() {
     </main>
   );
 }
+
+// export async function getServerSideProps() {
+//   const response = await axios.get(
+//     `${process.env.NEXT_PUBLIC_API_URL}/front/car`
+//   );
+//   const data = response.data;
+
+//   return {
+//     props: {
+//       products: data,
+//     },
+//   };
+// }

@@ -42,3 +42,33 @@ body {
 .custom-width {
   width: calc(100vw - 290px);
 }
+
+.product-image {
+  width: calc(100% - 170px);
+}
+
+@font-face {
+  font-family: dejavucaps;
+  src: url(../styles/fonts/HelveticaNeueLTGEO-75Bold.ttf);
+  
+}
+
+@font-face {
+  font-family: dejavu;
+  src: url(../styles/fonts/HelveticaNeueLTGEO-55Roman.ttf);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5
+{
+  font-family: dejavucaps;
+  font-feature-settings: "case" on;
+}
+
+h6 {
+  font-family: dejavu;
+  font-feature-settings: "case" on;
+}
