@@ -17,8 +17,15 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
+import axios from "axios";
+import { GetServerSidePropsContext } from "next";
 
-export default function SingleCar() {
+interface Prop {
+  oneCar: Product;
+  cars: AllProducts;
+}
+
+export default function SingleCar({ oneCar, cars }: Prop) {
   const [lari, setLari] = useState(false);
 
   const contactDiler = [
@@ -37,50 +44,50 @@ export default function SingleCar() {
   const details = [
     {
       id: 1,
-      prop: "ძრავი",
-      value: "2.4",
+      prop: "ძრავის მოცულობა",
+      value: oneCar.engine,
       icon: <PiEngine className="text-[24px]" />,
     },
     {
       id: 2,
       prop: "ფერი",
-      value: "თეთრი",
+      value: oneCar.color,
       icon: <MdOutlineFormatColorFill className="text-[24px]" />,
     },
     {
       id: 3,
       prop: "საწვავის ტიპი",
-      value: "დიზელი",
+      value: oneCar.petrol,
       icon: <MdLocalGasStation className="text-[24px]" />,
     },
     {
       id: 4,
       prop: "VIN კოდი",
-      value: "7SDF6FDSVD8ZSX9",
+      value: oneCar.vin,
       icon: <CiBarcode className="text-[24px]" />,
     },
     {
       id: 5,
       prop: "გარბენი",
-      value: "36 251 mil",
+      value: oneCar.metersRun + " km",
       icon: <MdOutlineSpeed className="text-[24px]" />,
     },
     {
       id: 6,
       prop: "გამოშვების წელი",
-      value: "2015",
+      value: oneCar.year,
       icon: <LuCalendarDays className="text-[24px]" />,
     },
     {
       id: 7,
       prop: "წამყვანი თვლები",
-      value: "4 x 4",
+      value: oneCar.driveShaft,
       icon: <PiCarFill className="text-[24px]" />,
     },
     {
       id: 8,
       prop: "გადაცემათა კოლოფი",
-      value: "ავტომატიკა",
+      value: oneCar.transmission,
       icon: <GiGearStickPattern className="text-[24px]" />,
     },
   ];
@@ -88,14 +95,16 @@ export default function SingleCar() {
   return (
     <div className="w-full px-[112px] max-w-[1500px] mx-auto py-6 flex flex-col gap-6">
       <div className="flex justify-between items-start">
-        <ProductSlider />
+        <ProductSlider imgs={oneCar.cars_imgs} />
         <div className="flex flex-col gap-4 w-[22%] sticky top-2">
           <div className="w-full flex flex-col gap-4">
             <div className="flex items-center gap-3 w-full justify-between">
               <h1 className="text-[24px] leading-[32px] text-[#022FB0]">
-                BMW 300
+                {oneCar.firm + " " + oneCar.model}
               </h1>
-              <p className="p-2 rounded-[5px] bg-[#022FB0] text-white">2015</p>
+              <p className="p-2 rounded-[5px] bg-[#022FB0] text-white">
+                {oneCar.year}
+              </p>
             </div>
 
             <div className="px-2 py-4 bg-white shadow-thin rounded-[8px] flex items-center justify-center gap-4">
@@ -186,8 +195,8 @@ export default function SingleCar() {
           მსგავსი მოდელები
         </h1>
         <div className="flex flex-wrap gap-5">
-          {[1, 2, 3, 4, 5, 6].map((item) => (
-            <Card2 key={item} />
+          {cars.data.slice(0, 6).map((item: Product) => (
+            <Card2 key={item.id} product={item} />
           ))}
         </div>
       </div>
@@ -195,4 +204,36 @@ export default function SingleCar() {
       <VideoSlider />
     </div>
   );
+}
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const { params } = context;
+
+  if (!params || !params.productId) {
+    // Handle the case where 'params' or 'params.product' is missing.
+    // You can return an error or a different response as needed.
+    return {
+      notFound: true, // For example, return a 404 Not Found page.
+    };
+  }
+
+  const { productId } = params;
+
+  const responseOneProduct = await axios.get(
+    `${process.env.NEXT_PUBLIC_API_URL}/front/car/${productId}`
+  );
+  const data = responseOneProduct.data;
+
+  const response = await axios.get(
+    `${process.env.NEXT_PUBLIC_API_URL}/front/car`
+  );
+  const productData = response.data;
+
+  return {
+    props: {
+      oneCar: data,
+      cars: productData,
+      productId,
+    },
+  };
 }

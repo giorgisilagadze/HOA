@@ -6,6 +6,7 @@ import FilterInput from "@/components/filter/FilterInput";
 import { IoIosSearch } from "react-icons/io";
 
 export default function Add() {
+  const changePage = async (page: number) => {};
   return (
     <div className={`custom-width py-[30px] px-8 flex items-start gap-5`}>
       <div className="w-[65%] flex flex-col gap-7">
@@ -19,7 +20,12 @@ export default function Add() {
             <IoIosSearch />
           </div>
         </div>
-        <PagePagination dataLength={1000} itemsPerPage={20}>
+        <PagePagination
+          dataLength={1000}
+          itemsPerPage={20}
+          both={true}
+          changePage={changePage}
+        >
           <div className="flex flex-col gap-4">
             {[1, 2, , 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (
               <CarComp key={item} />

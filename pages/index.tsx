@@ -5,8 +5,13 @@ import Slider from "@/components/homePage/Slider";
 import Card1 from "@/components/productCards/Card1";
 import Card2 from "@/components/productCards/Card2";
 import axios from "axios";
+import Link from "next/link";
 
-export default function Home({ products }: any) {
+interface Prop {
+  products: AllProducts;
+}
+
+export default function Home({ products }: Prop) {
   console.log(products);
 
   return (
@@ -22,14 +27,16 @@ export default function Home({ products }: any) {
               <h1 className="text-[28px] leading-[40px]">
                 აღმოაჩინე ავტომობილი
               </h1>
-              <div className="rounded-[27px] flex justify-center items-center gap-1 border border-[#022FB0] text-[#022FB0] py-2 px-[22px] cursor-pointer hover:bg-[#022FB0] hover:text-white duration-200">
-                <IoEyeOutline className="text-[20px]" />
-                <p className="text-[14px] leading-[22px]">მეტის ნახვა</p>
-              </div>
+              <Link href="/cars">
+                <div className="rounded-[27px] flex justify-center items-center gap-1 border border-[#022FB0] text-[#022FB0] py-2 px-[22px] cursor-pointer hover:bg-[#022FB0] hover:text-white duration-200">
+                  <IoEyeOutline className="text-[20px]" />
+                  <p className="text-[14px] leading-[22px]">მეტის ნახვა</p>
+                </div>
+              </Link>
             </div>
             <div className="flex flex-wrap gap-5">
-              {[1, 2, 3, 4, 5, 6, 7, 8].map((item: number) => (
-                <Card1 key={item} />
+              {products.data.slice(0, 8).map((item: Product) => (
+                <Card1 key={item.id} product={item} />
               ))}
             </div>
           </div>
@@ -39,8 +46,8 @@ export default function Home({ products }: any) {
         <div className="w-full max-w-[1328px] bg-white rounded-[30px] py-6 flex flex-col gap-[18px] px-[56px]">
           <h1 className="text-[28px] leading-[40px]">პოპულარული</h1>
           <div className="flex flex-wrap gap-5">
-            {[1, 2, 3, 4, 5, 6].map((item: number) => (
-              <Card2 key={item} />
+            {products.data.slice(0, 6).map((item: Product) => (
+              <Card2 key={item.id} product={item} />
             ))}
           </div>
         </div>
@@ -49,15 +56,15 @@ export default function Home({ products }: any) {
   );
 }
 
-// export async function getServerSideProps() {
-//   const response = await axios.get(
-//     `${process.env.NEXT_PUBLIC_API_URL}/front/car`
-//   );
-//   const data = response.data;
+export async function getServerSideProps() {
+  const response = await axios.get(
+    `${process.env.NEXT_PUBLIC_API_URL}/front/car`
+  );
+  const data = response.data;
 
-//   return {
-//     props: {
-//       products: data,
-//     },
-//   };
-// }
+  return {
+    props: {
+      products: data,
+    },
+  };
+}

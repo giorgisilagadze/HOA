@@ -1,6 +1,7 @@
 import { FaTiktok } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
+import { FaPhoneAlt } from "react-icons/fa";
 
 export const contact: Contact[] = [
   {
@@ -43,16 +44,20 @@ export default function Footer() {
           </div>
         ))}
       </div>
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-6">
         {phoneNumbs.map((item: PhoneNumb) => (
-          <p
-            key={item.id}
-            className="text-[14px] leading-[22px] text-[#4960A4] underline cursor-pointer"
-          >
-            {item.number}
-          </p>
+          <div className="flex items-center gap-2">
+            <FaPhoneAlt className="text-[#022FB0] text-[14px]" />
+            <p
+              key={item.id}
+              className="text-[14px] leading-[22px] text-[#4960A4] underline cursor-pointer"
+            >
+              {item.number}
+            </p>
+          </div>
         ))}
       </div>
+
       <div className="flex flex-col gap-1">
         <hr className="w-[520px] h-[1px] border-none bg-[#BBB]" />
         <div className="flex items-center gap-1 justify-center">

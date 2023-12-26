@@ -1,38 +1,52 @@
+import Link from "next/link";
 import { IoIosArrowRoundForward } from "react-icons/io";
+import { LuCalendarDays } from "react-icons/lu";
 import { MdLocalGasStation } from "react-icons/md";
 import { MdOutlineSpeed } from "react-icons/md";
 import { PiCarFill } from "react-icons/pi";
 
-export default function Card2() {
+interface Prop {
+  product: Product;
+}
+
+export default function Card2({ product }: Prop) {
   const properties: Contact[] = [
     {
       id: 1,
-      text: "დიზელი",
+      text: product.petrol,
       icon: <MdLocalGasStation />,
     },
     {
       id: 2,
-      text: "135 000 km",
+      text: product.metersRun + " km",
       icon: <MdOutlineSpeed />,
     },
     {
       id: 3,
-      text: "4 x 4",
-      icon: <PiCarFill />,
+      text: product.year,
+      icon: <LuCalendarDays />,
     },
   ];
 
   return (
     <div className="flex w-[32.2%] items-center shadow-product rounded-[4px] bg-white">
-      <img
-        src="../images/car.jpeg"
-        alt="product-image"
-        className="w-[194px] h-full rounded-tl-[4px] rounded-bl-[4px]"
-      />
-      <div className="py-2 px-4 flex flex-col gap-1">
+      <Link href={`/cars/${product.id}`}>
+        <img
+          src={`${product.mainPhoto}`}
+          alt="product-image"
+          className="w-[194px] h-[170px] rounded-tl-[4px] rounded-bl-[4px] object-cover"
+        />
+      </Link>
+      <div className="py-2 px-4 w-[50%] flex flex-col gap-1">
         <div>
-          <p className="text-[#022FB0]">De Lorean Smth Model</p>
-          <p className="text-[12px] leading-[16px] text-[#717171]">HOA-123</p>
+          <Link href={`/cars/${product.id}`}>
+            <p className="text-[#022FB0] line-clamp-1 max-w-[140px]">
+              {product.name}
+            </p>
+          </Link>
+          <p className="text-[12px] leading-[16px] text-[#717171]">
+            {product.code}
+          </p>
         </div>
         <div className="flex flex-col gap-1">
           {properties.map((item: Contact) => (
@@ -44,12 +58,14 @@ export default function Card2() {
         </div>
         <div className="w-full flex justify-between items-center mt-2">
           <p className="text-[#022FB0]">$2 000 </p>
-          <div className="flex items-center hover:underline cursor-pointer">
-            <p className="text-[14px] leading-[22px] text-[#022FB0]">
-              დეტალურად
-            </p>
-            <IoIosArrowRoundForward className="text-[#022FB0] -rotate-45 text-[20px] ml-[-5px]" />
-          </div>
+          <Link href={`/cars/${product.id}`}>
+            <div className="flex items-center hover:underline cursor-pointer">
+              <p className="text-[14px] leading-[22px] text-[#022FB0]">
+                დეტალურად
+              </p>
+              <IoIosArrowRoundForward className="text-[#022FB0] -rotate-45 text-[20px] ml-[-5px]" />
+            </div>
+          </Link>
         </div>
       </div>
     </div>

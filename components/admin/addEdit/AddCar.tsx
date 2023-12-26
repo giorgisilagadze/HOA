@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import FilterInput from "../../filter/FilterInput";
 import FileInput from "./FileInput";
 
@@ -102,7 +103,27 @@ const vehicleTypeOptions = [
   "სპორტბექი",
   "ჯიპის კუპე",
 ];
+
 export default function AddCar() {
+  const [engineFields, setEngineFields] = useState<null | Array<string>>(null);
+  const [yearFields, setYearFields] = useState<null | Array<number>>(null);
+  const arrayRangeFloat = (start: number, stop: number, step: number) =>
+    Array.from({ length: (stop - start) / step + 1 }, (value, index) =>
+      Number(start + index * step).toFixed(1)
+    );
+  const arrayRangeInt = (start: number, stop: number, step: number) =>
+    Array.from(
+      { length: (stop - start) / step + 1 },
+      (value, index) => start + index * step
+    );
+  useEffect(() => {
+    let tmp1 = arrayRangeFloat(0.7, 7.1, 0.1);
+    tmp1 = ["0.0", ...tmp1];
+    setEngineFields(tmp1);
+    const currentYear: any = new Date().getFullYear();
+    let tmp2 = arrayRangeInt(1990, parseInt(currentYear), 1);
+    setYearFields(tmp2);
+  }, []);
   return (
     <div className="flex flex-col gap-3">
       <FileInput isVideo={false} />
@@ -111,7 +132,13 @@ export default function AddCar() {
           <p className="text-[#787d87] text-[14px] leading-[22px]">
             {item.title}
           </p>
-          <FilterInput width="full" ml="0" border="#c0bebe" />
+          <FilterInput
+            width="full"
+            ml="0"
+            border="#c0bebe"
+            title={""}
+            filterFields={[]}
+          />
         </div>
       ))}
       <div className="flex flex-col gap-1">
@@ -126,7 +153,13 @@ export default function AddCar() {
           <p className="text-[#787d87] text-[14px] leading-[22px]">
             {item.title}
           </p>
-          <FilterInput width="full" ml="0" border="#c0bebe" />
+          <FilterInput
+            width="full"
+            ml="0"
+            border="#c0bebe"
+            title={""}
+            filterFields={[]}
+          />
         </div>
       ))}
       <div className="flex flex-col gap-1">

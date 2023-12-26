@@ -4,7 +4,11 @@ import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { useRef, useState } from "react";
 import { IoIosArrowBack } from "react-icons/io";
 
-export default function ProductSlider() {
+interface Prop {
+  imgs: CarImg[];
+}
+
+export default function ProductSlider({ imgs }: Prop) {
   let swiperRef = useRef<any>(null);
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
   return (
@@ -25,11 +29,11 @@ export default function ProductSlider() {
           modules={[FreeMode, Navigation, Thumbs]}
           className="mySwiper w-[150px] h-full mx-0"
         >
-          {[1, 2, 3, 4, 5, 6, 7].map((item) => (
-            <SwiperSlide key={item}>
+          {imgs.map((item: CarImg) => (
+            <SwiperSlide key={item.id}>
               <div className=" rounded-lg flex items-center justify-center mx-0">
                 <img
-                  src="../images/car.jpeg"
+                  src={item.url}
                   alt="#"
                   className="h-[105px] w-full max-tiny:h-[70px] cursor-pointer object-contain rounded-[10px] "
                 />
@@ -65,11 +69,11 @@ export default function ProductSlider() {
           modules={[FreeMode, Navigation, Thumbs]}
           className="w-full rounded-[12px]"
         >
-          {[1, 2, 3, 4].map((item) => (
-            <SwiperSlide key={item}>
+          {imgs.map((item: CarImg) => (
+            <SwiperSlide key={item.id}>
               <div className="w-full h-full rounded-[12px] flex items-center justify-center overflow-hidden">
                 <img
-                  src="../images/car.jpeg"
+                  src={item.url}
                   alt="#"
                   className=" w-full h-[500px] rounded-[12px] object-cover"
                 />

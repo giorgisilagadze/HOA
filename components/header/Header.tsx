@@ -26,12 +26,12 @@ export default function Header() {
   const [isRequested, setIsRequested] = useState(false);
 
   useEffect(() => {
-    setPage(route.asPath);
-  }, [route.asPath]);
+    setPage(route.pathname);
+  }, [route.pathname]);
 
   return (
     <>
-      <header className="w-full px-[112px] py-4 flex justify-between items-center bg-white">
+      <header className="w-full px-[112px] py-[22px] flex justify-between items-center bg-white">
         <div className="flex items-center gap-[100px]">
           <Link href="/">
             <img
@@ -63,10 +63,10 @@ export default function Header() {
         <div className="relative w-[37%]">
           <input
             type="text"
-            className="w-full py-[9px] px-6 rounded-[44px] text-[14px] leading-5 shadow-thin border border-[#EEE] outline-none"
+            className="w-full py-[12px] px-6 rounded-[44px] text-[14px] leading-5 shadow-thin border border-[#EEE] outline-none"
             placeholder="მოძებნე მანქანა სახელით ან კოდით"
           />
-          <IoIosSearch className="absolute top-3 right-6 text-[blue]" />
+          <IoIosSearch className="absolute top-4 right-6 text-[blue]" />
         </div>
         <div className="flex items-center gap-2">
           <div
