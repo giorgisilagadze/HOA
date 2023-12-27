@@ -87,5 +87,11 @@ interface AllProducts {
 interface Filter {
   id: 1;
   title: string;
-  filterFields: string[] | number[] | [];
+  filterFields: string[] | [];
+}
+
+interface CheckedFields {
+  id: number;
+  title: string;
+  checked: any;
 }

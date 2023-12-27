@@ -12,8 +12,6 @@ interface Prop {
 }
 
 export default function Home({ products }: Prop) {
-  console.log(products);
-
   return (
     <main className="pb-6">
       <Slider />

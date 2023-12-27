@@ -21,7 +21,28 @@ export default function AddOrDeleteBrand({ isAdd }: Prop) {
                 className="w-[95%] rounded-[4px] border border-[#c0bebe] py-[7px] px-2 outline-none"
               />
             ) : (
-              <FilterInput width="[95%]" ml="0" border="#c0bebe" />
+              <FilterInput
+                width="[95%]"
+                ml="0"
+                border="#c0bebe"
+                title={""}
+                id={0}
+                filterFields={undefined}
+                checkedFields={[]}
+                setCheckedFields={function (checkedFields: any[]): void {
+                  throw new Error("Function not implemented.");
+                }}
+                isClear={false}
+                setIsClear={function (isClear: boolean): void {
+                  throw new Error("Function not implemented.");
+                }}
+                clickedFilter={null}
+                setClickedFilter={function (
+                  clickedFilter: number | null
+                ): void {
+                  throw new Error("Function not implemented.");
+                }}
+              />
             )}
             <button
               className={`p-[9px] rounded-[12px] text-white text-[14px] leading-[22px] ${
@@ -40,7 +61,26 @@ export default function AddOrDeleteBrand({ isAdd }: Prop) {
           <p className="text-[#787d87] text-[14px] leading-[22px]">
             აირჩიეთ ფირმა
           </p>
-          <FilterInput width="full" ml="0" border="#c0bebe" />
+          <FilterInput
+            width="full"
+            ml="0"
+            border="#c0bebe"
+            title={""}
+            id={0}
+            filterFields={undefined}
+            checkedFields={[]}
+            setCheckedFields={function (checkedFields: any[]): void {
+              throw new Error("Function not implemented.");
+            }}
+            isClear={false}
+            setIsClear={function (isClear: boolean): void {
+              throw new Error("Function not implemented.");
+            }}
+            clickedFilter={null}
+            setClickedFilter={function (clickedFilter: number | null): void {
+              throw new Error("Function not implemented.");
+            }}
+          />
         </div>
         <div className="flex flex-col gap-1">
           <p className="text-[#787d87] text-[14px] leading-[22px]">მოდელი</p>
@@ -51,7 +91,28 @@ export default function AddOrDeleteBrand({ isAdd }: Prop) {
                 className="w-[95%] rounded-[4px] border border-[#c0bebe] py-[7px] px-2 outline-none"
               />
             ) : (
-              <FilterInput width="[95%]" ml="0" border="#c0bebe" />
+              <FilterInput
+                width="[95%]"
+                ml="0"
+                border="#c0bebe"
+                title={""}
+                id={0}
+                filterFields={undefined}
+                checkedFields={[]}
+                setCheckedFields={function (checkedFields: any[]): void {
+                  throw new Error("Function not implemented.");
+                }}
+                isClear={false}
+                setIsClear={function (isClear: boolean): void {
+                  throw new Error("Function not implemented.");
+                }}
+                clickedFilter={null}
+                setClickedFilter={function (
+                  clickedFilter: number | null
+                ): void {
+                  throw new Error("Function not implemented.");
+                }}
+              />
             )}
             <button
               className={`p-[9px] rounded-[12px] text-white text-[14px] leading-[22px] ${

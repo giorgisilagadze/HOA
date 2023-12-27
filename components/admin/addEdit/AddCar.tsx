@@ -138,6 +138,19 @@ export default function AddCar() {
             border="#c0bebe"
             title={""}
             filterFields={[]}
+            id={0}
+            checkedFields={[]}
+            setCheckedFields={function (checkedFields: any[]): void {
+              throw new Error("Function not implemented.");
+            }}
+            isClear={false}
+            setIsClear={function (isClear: boolean): void {
+              throw new Error("Function not implemented.");
+            }}
+            clickedFilter={null}
+            setClickedFilter={function (clickedFilter: number | null): void {
+              throw new Error("Function not implemented.");
+            }}
           />
         </div>
       ))}
@@ -159,6 +172,19 @@ export default function AddCar() {
             border="#c0bebe"
             title={""}
             filterFields={[]}
+            id={0}
+            checkedFields={[]}
+            setCheckedFields={function (checkedFields: any[]): void {
+              throw new Error("Function not implemented.");
+            }}
+            isClear={false}
+            setIsClear={function (isClear: boolean): void {
+              throw new Error("Function not implemented.");
+            }}
+            clickedFilter={null}
+            setClickedFilter={function (clickedFilter: number | null): void {
+              throw new Error("Function not implemented.");
+            }}
           />
         </div>
       ))}

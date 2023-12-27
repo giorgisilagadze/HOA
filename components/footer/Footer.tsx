@@ -46,7 +46,7 @@ export default function Footer() {
       </div>
       <div className="flex items-center gap-6">
         {phoneNumbs.map((item: PhoneNumb) => (
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2" key={item.id}>
             <FaPhoneAlt className="text-[#022FB0] text-[14px]" />
             <p
               key={item.id}
