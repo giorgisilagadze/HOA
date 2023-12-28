@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { TiArrowSortedDown } from "react-icons/ti";
 import { PiCheckBold } from "react-icons/pi";
+import { PrimaryContext } from "@/utils/MainContext";
 
 const countries: Country[] = [
   {
@@ -56,8 +57,6 @@ interface Prop {
   title: string;
   id: number;
   filterFields: string[] | any;
-  checkedFields: CheckedFields[];
-  setCheckedFields: (checkedFields: any[]) => void;
   isClear: boolean;
   setIsClear: (isClear: boolean) => void;
   clickedFilter: number | null;
@@ -71,13 +70,12 @@ export default function FilterInput({
   title,
   id,
   filterFields,
-  checkedFields,
-  setCheckedFields,
   isClear,
   setIsClear,
   clickedFilter,
   setClickedFilter,
 }: Prop) {
+  const { checkedFields, setCheckedFields }: any = useContext(PrimaryContext);
   const [info, setInfo] = useState<string[] | [] | undefined>();
   const [inputFromVal, setInputFromVal] = useState("");
   const [inputToVal, setInputToVal] = useState("");
@@ -86,14 +84,11 @@ export default function FilterInput({
   const divRef: any = useRef();
 
   useEffect(() => {
+    setInfo(filterFields);
     if (divRef.current) {
       setDivHeight(divRef.current.clientHeight);
     }
   }, [clickedFilter]);
-
-  useEffect(() => {
-    setInfo(filterFields);
-  }, []);
 
   useEffect(() => {
     if (isClear) setInputFromVal("");
@@ -145,20 +140,22 @@ export default function FilterInput({
               <div className="w-[48%] flex flex-col items-start gap-1">
                 <p className="text-[12px]">დან</p>
                 <input
-                  type="text"
+                  type="number"
                   className={`w-full border border-[#EEE] rounded-[4px] outline-none text-[12px] leading-4 py-2 px-3`}
                   placeholder="ძებნა"
                   value={inputFromVal}
                   onChange={(e) => {
-                    const updatedCheckedFields = checkedFields.map((field) => {
-                      if (field?.title === title) {
-                        const updatedField = { ...field };
-                        updatedField.checked[0] = e.target.value;
-                        return updatedField;
-                      } else {
-                        return field;
+                    const updatedCheckedFields = checkedFields.map(
+                      (field: CheckedFields) => {
+                        if (field?.title === title) {
+                          const updatedField = { ...field };
+                          updatedField.checked[0] = e.target.value;
+                          return updatedField;
+                        } else {
+                          return field;
+                        }
                       }
-                    });
+                    );
                     setInputFromVal(e.target.value);
                     setCheckedFields(updatedCheckedFields);
                   }}
@@ -167,21 +164,23 @@ export default function FilterInput({
               <div className="w-[48%] flex flex-col items-end gap-1">
                 <p className="text-[12px]">მდე</p>
                 <input
-                  type="text"
+                  type="number"
                   className={`w-full border border-[#EEE] rounded-[4px] outline-none text-[12px] leading-4 py-2 px-3`}
                   placeholder="ძებნა"
                   value={inputToVal}
                   onChange={(e) => {
                     e.preventDefault();
-                    const updatedCheckedFields = checkedFields.map((field) => {
-                      if (field?.title === title) {
-                        const updatedField = { ...field };
-                        updatedField.checked[1] = e.target.value;
-                        return updatedField;
-                      } else {
-                        return field;
+                    const updatedCheckedFields = checkedFields.map(
+                      (field: CheckedFields) => {
+                        if (field?.title === title) {
+                          const updatedField = { ...field };
+                          updatedField.checked[1] = e.target.value;
+                          return updatedField;
+                        } else {
+                          return field;
+                        }
                       }
-                    });
+                    );
                     setInputToVal(e.target.value);
                     setCheckedFields(updatedCheckedFields);
                   }}
@@ -208,21 +207,23 @@ export default function FilterInput({
                   key={item}
                   className={`p-2 border-b border-[#eee] rounded-[4px] flex items-center gap-2 cursor-pointer hover:opacity-60`}
                   onClick={() => {
-                    const updatedCheckedFields = checkedFields.map((field) => {
-                      if (field?.title === title) {
-                        const updatedField = { ...field };
-                        if (field?.checked.includes(item)) {
-                          updatedField.checked = updatedField.checked.filter(
-                            (checkedItem: any) => checkedItem !== item
-                          );
+                    const updatedCheckedFields = checkedFields.map(
+                      (field: CheckedFields) => {
+                        if (field?.title === title) {
+                          const updatedField = { ...field };
+                          if (field?.checked.includes(item)) {
+                            updatedField.checked = updatedField.checked.filter(
+                              (checkedItem: any) => checkedItem !== item
+                            );
+                          } else {
+                            updatedField.checked.push(item);
+                          }
+                          return updatedField;
                         } else {
-                          updatedField.checked.push(item);
+                          return field;
                         }
-                        return updatedField;
-                      } else {
-                        return field;
                       }
-                    });
+                    );
 
                     setCheckedFields(updatedCheckedFields);
                   }}
@@ -230,7 +231,7 @@ export default function FilterInput({
                   <div
                     className={`w-3 h-3 rounded-[50%] border border-slate-300 flex justify-center items-center text-white text-[8px] ${
                       checkedFields.some(
-                        (field) =>
+                        (field: CheckedFields) =>
                           field?.title == title && field?.checked.includes(item)
                       ) && "bg-[#022FB0] border-none"
                     }`}

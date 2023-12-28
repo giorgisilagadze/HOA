@@ -3,10 +3,35 @@ import AddCar from "@/components/admin/addEdit/AddCar";
 import CarComp from "@/components/admin/addEdit/CarComp";
 import FileInput from "@/components/admin/addEdit/FileInput";
 import FilterInput from "@/components/filter/FilterInput";
+import axiosClient from "@/utils/AxiosClients";
+import { PrimaryContext } from "@/utils/MainContext";
+import axios from "axios";
+import { useContext, useEffect, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 
 export default function Add() {
-  const changePage = async (page: number) => {};
+  const { setIsLoading, isLoading } = useContext(PrimaryContext);
+  const [page, setPage] = useState(1);
+  const [adminProducts, setAdminProducts] = useState<AllProducts | any>();
+
+  const changePage = async (page: number) => {
+    setIsLoading(true);
+
+    try {
+      const response = await axiosClient.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/admin/car?page=${page}&per_page=20`
+      );
+      const data = response.data;
+      setAdminProducts(data);
+      setIsLoading(false);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    changePage(page);
+  }, [page]);
   return (
     <div className={`custom-width py-[30px] px-8 flex items-start gap-5`}>
       <div className="w-[65%] flex flex-col gap-7">
@@ -21,15 +46,19 @@ export default function Add() {
           </div>
         </div>
         <PagePagination
-          dataLength={1000}
+          dataLength={adminProducts?.total}
           itemsPerPage={20}
           both={true}
-          changePage={changePage}
+          adminChangePage={changePage}
         >
           <div className="flex flex-col gap-4">
-            {[1, 2, , 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (
-              <CarComp key={item} />
-            ))}
+            {isLoading
+              ? [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (
+                  <div className="w-full h-[64px] animated-background"></div>
+                ))
+              : adminProducts?.data?.map((item: Product) => (
+                  <CarComp key={item.id} car={item} />
+                ))}
           </div>
         </PagePagination>
       </div>

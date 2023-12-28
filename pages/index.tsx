@@ -12,6 +12,8 @@ interface Prop {
 }
 
 export default function Home({ products }: Prop) {
+  console.log(products);
+
   return (
     <main className="pb-6">
       <Slider />
@@ -33,7 +35,7 @@ export default function Home({ products }: Prop) {
               </Link>
             </div>
             <div className="flex flex-wrap gap-5">
-              {products.data.slice(0, 8).map((item: Product) => (
+              {products?.data?.slice(0, 8).map((item: Product) => (
                 <Card1 key={item.id} product={item} />
               ))}
             </div>
@@ -44,7 +46,7 @@ export default function Home({ products }: Prop) {
         <div className="w-full max-w-[1328px] bg-white rounded-[30px] py-6 flex flex-col gap-[18px] px-[56px]">
           <h1 className="text-[28px] leading-[40px]">პოპულარული</h1>
           <div className="flex flex-wrap gap-5">
-            {products.data.slice(0, 6).map((item: Product) => (
+            {products?.data?.slice(0, 6).map((item: Product) => (
               <Card2 key={item.id} product={item} />
             ))}
           </div>

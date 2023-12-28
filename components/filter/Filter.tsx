@@ -2,10 +2,23 @@ import { IoIosSearch } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
 
 import FilterInput from "./FilterInput";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
+import { PrimaryContext } from "@/utils/MainContext";
+import { useRouter } from "next/router";
 
 export default function Filter() {
+  const {
+    filteredCars,
+    setFilteredCars,
+    isLoading,
+    setIsLoading,
+    checkedFields,
+    setCheckedFields,
+    handleFilter,
+  }: any = useContext(PrimaryContext);
+  const route = useRouter();
+
   const addcar = [
     {
       id: 1,
@@ -133,7 +146,7 @@ export default function Filter() {
     {
       id: 1,
       title: "ბრენდი",
-      filterFields: ["bmw", "mercedes", "porsche", "audi", "nissan"],
+      filterFields: ["bmw", "mercedes", "porsche", "audi", "nissan", "Kia"],
     },
     {
       id: 2,
@@ -190,80 +203,10 @@ export default function Filter() {
     },
   ];
 
-  const [checkedFields, setCheckedFields] = useState([
-    {
-      id: 1,
-      title: "ბრენდი",
-      checked: [],
-    },
-    {
-      id: 2,
-      title: "მოდელი",
-      checked: [],
-    },
-    {
-      id: 3,
-      title: "წელი",
-      checked: [],
-    },
-    {
-      id: 4,
-      title: "ტრანსმისია",
-      checked: [],
-    },
-    {
-      id: 5,
-      title: "ძრავი",
-      checked: [],
-    },
-    {
-      id: 6,
-      title: "საწვავის ტიპი",
-      checked: [],
-    },
-    {
-      id: 7,
-      title: "საჭე",
-      checked: [],
-    },
-    {
-      id: 8,
-      title: "ფასი",
-      checked: [],
-    },
-    {
-      id: 9,
-      title: "ფერი",
-      checked: [],
-    },
-    {
-      id: 10,
-      title: "წამყვანი თვლები",
-      checked: [],
-    },
-    {
-      id: 11,
-      title: "ტიპი",
-      checked: [],
-    },
-    {
-      id: 12,
-      title: "გარბენი",
-      checked: [],
-    },
-  ]);
   const [isClear, setIsClear] = useState(false);
   const [clickedFilter, setClickeFilter] = useState<number | null>(null);
 
-  const handleFilter = async () => {
-    const checkedArr = checkedFields.map((item) => item.checked);
-
-    const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/front/car?brand=[${checkedArr[0]}]&model=[${checkedArr[1]}]&minYear=${checkedArr[2][0]}&maxYear=${checkedArr[2][1]}&transmition=[${checkedArr[3]}]&engine=[${checkedArr[4]}]&petrol=[${checkedArr[5]}]&weel=[${checkedArr[6]}]&minPrice=${checkedArr[7][0]}&maxPrice=${checkedArr[7][1]}&color=[${checkedArr[8]}]&driveShaft=[${checkedArr[9]}]&type=[${checkedArr[10]}]&minMetersRun=${checkedArr[11][0]}&maxMetersRun=${checkedArr[11][1]}`
-    );
-    const data = response.data;
-    console.log(data);
-  };
+  console.log(isClear);
 
   return (
     <div className="w-full flex flex-wrap items-center justify-end gap-2">
@@ -275,8 +218,6 @@ export default function Filter() {
           border="#EEE"
           title={item.title}
           filterFields={item.filterFields}
-          checkedFields={checkedFields}
-          setCheckedFields={setCheckedFields}
           isClear={isClear}
           setIsClear={setIsClear}
           id={item.id}
@@ -286,7 +227,12 @@ export default function Filter() {
       ))}
       <button
         className="w-[186px] h-[38px] py-2 bg-[#022FB0] rounded-[20px] flex justify-center items-center gap-2 border-none ml-3"
-        onClick={() => handleFilter()}
+        onClick={() => {
+          handleFilter(1);
+          if (route.pathname !== "/cars") {
+            route.push("/cars");
+          }
+        }}
       >
         <IoIosSearch className="text-[20px] text-white" />
         <p className="text-white">ძიება</p>
@@ -295,11 +241,20 @@ export default function Filter() {
         className="w-[186px] h-[38px] py-2 bg-[#D81111] rounded-[20px] flex justify-center items-center gap-2 border-none ml-3"
         onClick={() => {
           const updatedCheckedFields = checkedFields.map(
-            (item) => (item.checked = [])
+            (item: CheckedFields) => ({
+              ...item,
+              checked: [],
+            })
           );
-          // @ts-ignore
           setCheckedFields(updatedCheckedFields);
-          setIsClear(true);
+          if (isClear) {
+            setIsClear(false);
+            setTimeout(() => {
+              setIsClear(true);
+            }, 50);
+          } else {
+            setIsClear(true);
+          }
         }}
       >
         <MdDelete className="text-[20px] text-white" />

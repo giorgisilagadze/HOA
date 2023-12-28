@@ -2,16 +2,23 @@ import { TiArrowSortedDown } from "react-icons/ti";
 
 import Filter from "@/components/filter/Filter";
 import Card1 from "@/components/productCards/Card1";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import LoadingCard from "@/components/productCards/LoadingCard";
 import { useRouter } from "next/router";
 import PagePagination from "@/components/PagePagination";
+import { PrimaryContext } from "@/utils/MainContext";
 
 export default function Cars() {
+  const {
+    filteredCars,
+    setFilteredCars,
+    isLoading,
+    setIsLoading,
+    handleFilter,
+  }: any = useContext(PrimaryContext);
   const [page, setPage] = useState(1);
   const [products, setProducts] = useState<AllProducts | any>();
-  const [isLoading, setIsLoading] = useState(false);
 
   const ref = useRef(1);
 
@@ -20,14 +27,14 @@ export default function Cars() {
   const { query }: any = route;
 
   const changePage = async (page: number) => {
-    route.push(
-      {
-        pathname: "/cars",
-        query: `page=${page}&per_page=20`,
-      },
-      undefined,
-      { scroll: false }
-    );
+    // route.push(
+    //   {
+    //     pathname: "/cars",
+    //     query: `page=${page}&per_page=20`,
+    //   },
+    //   undefined,
+    //   { scroll: false }
+    // );
     setIsLoading(true);
 
     try {
@@ -66,6 +73,8 @@ export default function Cars() {
     // }
   }, [page]);
 
+  console.log(filteredCars);
+
   return (
     <div className="w-full px-[56px] flex justify-center py-6">
       <div className="w-full max-w-[1328px] bg-white rounded-[30px] py-8 flex flex-col gap-[48px]">
@@ -74,21 +83,33 @@ export default function Cars() {
         </div>
         <div className="w-full px-[56px] flex flex-col items-center gap-8  ">
           <PagePagination
-            dataLength={products?.total}
+            dataLength={
+              filteredCars.length !== 0 ? filteredCars.total : products?.total
+            }
             itemsPerPage={20}
             both={false}
             changePage={changePage}
           >
             <div className=" w-full flex flex-col gap-[18px]">
               <div className="flex flex-wrap gap-5">
-                {isLoading
-                  ? [
-                      1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
-                      18, 19, 20,
-                    ].map((item) => <LoadingCard key={item} />)
-                  : products?.data.map((item: Product) => (
+                {isLoading ? (
+                  [
+                    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
+                    18, 19, 20,
+                  ].map((item) => <LoadingCard key={item} />)
+                ) : filteredCars.length !== 0 ? (
+                  filteredCars.total !== 0 ? (
+                    filteredCars?.data?.map((item: Product) => (
                       <Card1 key={item.id} product={item} />
-                    ))}
+                    ))
+                  ) : (
+                    <div className="h-[500px] ">მონაცემები არ მოიძებნა</div>
+                  )
+                ) : (
+                  products?.data.map((item: Product) => (
+                    <Card1 key={item.id} product={item} />
+                  ))
+                )}
               </div>
             </div>
           </PagePagination>

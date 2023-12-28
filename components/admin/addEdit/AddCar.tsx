@@ -139,6 +139,7 @@ export default function AddCar() {
             title={""}
             filterFields={[]}
             id={0}
+            // @ts-ignore
             checkedFields={[]}
             setCheckedFields={function (checkedFields: any[]): void {
               throw new Error("Function not implemented.");
@@ -173,6 +174,7 @@ export default function AddCar() {
             title={""}
             filterFields={[]}
             id={0}
+            // @ts-ignore
             checkedFields={[]}
             setCheckedFields={function (checkedFields: any[]): void {
               throw new Error("Function not implemented.");

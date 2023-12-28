@@ -46,29 +46,28 @@ export default function Admin() {
     resolver: yupResolver(schema),
   });
 
-  // const onSubmit = async (data: FormData, e: any) => {
-  //   e.preventDefault();
-  //   try {
-  //     const response = await axios.post(
-  //       `${process.env.NEXT_PUBLIC_API_URL}/adminAuth/loginAdmin`,
-  //       {
-  //         email: data.email,
-  //         password: data.password,
-  //       }
-  //     );
-  //     setLoginError("");
-  //     route.push("/admin/add-edit");
-  //     setAdminToken(response.data.access_token);
-  //     localStorage.setItem("adminToken", response.data.access_token);
-  //   } catch (err: any) {
-  //     console.log(err, "errr");
-  //     setLoginError("მეილი ან პაროლი არასწორია");
-  //   }
-  // };
+  const onSubmit = async (data: FormData, e: any) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/adminAuth/loginAdmin`,
+        {
+          email: data.email,
+          password: data.password,
+        }
+      );
+      setLoginError("");
+      route.push("/admin/add-edit");
+      setAdminToken(response.data.access_token);
+      localStorage.setItem("adminToken", response.data.access_token);
+    } catch (err: any) {
+      console.log(err, "errr");
+      setLoginError("მეილი ან პაროლი არასწორია");
+    }
+  };
 
   return (
-    //onSubmit={handleSubmit(onSubmit)}
-    <form>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className="w-[100vw] h-[100vh] flex flex-col justify-center items-center gap-6">
         <h1 className="text-[20px] leading-6 text-[#717171]">
           გაიარეთ ავტორიზაცია გასაგრძელებლად

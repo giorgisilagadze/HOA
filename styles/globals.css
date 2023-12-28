@@ -94,3 +94,9 @@ h6 {
   background-size: 800px 104px;
   position: relative;
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

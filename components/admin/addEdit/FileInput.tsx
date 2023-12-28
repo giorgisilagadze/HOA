@@ -8,6 +8,7 @@ interface Prop {
   handleMakeEmpty?: (() => void) | any;
   setSelectedPhotoIndex?: (() => void) | any;
   isVideo: boolean;
+  reqName?: string;
 }
 
 export const FileInput = ({
@@ -17,6 +18,7 @@ export const FileInput = ({
   handleMakeEmpty,
   setSelectedPhotoIndex = null,
   isVideo,
+  reqName,
 }: Prop) => {
   const [multipleFiles, setMultipleFiles] = useState([]);
   const inputElement: any = useRef(null);
@@ -53,8 +55,11 @@ export const FileInput = ({
       handleMakeEmpty(false);
     }
   }, [makeEmpty]);
+
+  console.log(multipleFiles);
+
   return (
-    <>
+    <div className="w-full">
       <div>
         <div
           onClick={handleOpenInput}
@@ -84,7 +89,7 @@ export const FileInput = ({
           <p className="text-sm text-gray-500">{name}</p>
         </div>
         <input
-          name="videos[]"
+          name={reqName}
           ref={inputElement}
           multiple
           className="hidden"
@@ -147,7 +152,7 @@ export const FileInput = ({
           <></>
         )}
       </div>
-    </>
+    </div>
   );
 };
 

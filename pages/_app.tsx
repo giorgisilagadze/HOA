@@ -6,6 +6,9 @@ import "@/styles/globals.css";
 import MainContext from "@/utils/MainContext";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
+import "react-toastify/dist/ReactToastify.css";
+
+import { ToastContainer } from "react-toastify";
 
 export default function App({ Component, pageProps }: AppProps) {
   const route = useRouter();
@@ -23,12 +26,24 @@ export default function App({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
         </MainContext>
       ) : (
-        <>
+        <MainContext>
           <Header />
           <ContactComp />
           <Component {...pageProps} />
+          <ToastContainer
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
           <Footer />
-        </>
+        </MainContext>
       )}
     </>
   );

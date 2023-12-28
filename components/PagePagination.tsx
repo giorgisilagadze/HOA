@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { PrimaryContext } from "@/utils/MainContext";
+import { useContext, useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 
 interface Prop {
@@ -6,7 +7,8 @@ interface Prop {
   itemsPerPage: number;
   children: any;
   both: boolean;
-  changePage: (arg1: number) => {};
+  changePage?: (arg1: number) => {};
+  adminChangePage?: (arg1: number) => {};
 }
 
 export default function PagePagination({
@@ -15,15 +17,13 @@ export default function PagePagination({
   children,
   both,
   changePage,
+  adminChangePage,
 }: Prop) {
+  const { filteredCars, handleFilter }: any = useContext(PrimaryContext);
   //current Page
   const [currentPage, setCurrentPage] = useState(0);
   //calculate how many pages will be there
   const pageCount = Math.ceil(dataLength / itemsPerPage);
-  // get current page number
-  const handlePageClick = (event: any) => {
-    setCurrentPage(event.selected);
-  };
 
   const ScrollToTop = () => {
     window.scrollTo({
@@ -31,6 +31,17 @@ export default function PagePagination({
       behavior: "smooth",
     });
   };
+  // get current page number
+  const handlePageClick = (event: any) => {
+    setCurrentPage(event.selected);
+    ScrollToTop();
+  };
+
+  useEffect(() => {
+    if (filteredCars.length !== 0) {
+      setCurrentPage(1);
+    }
+  }, []);
 
   return (
     <>
@@ -39,6 +50,7 @@ export default function PagePagination({
           breakLabel="..."
           onPageChange={(e) => {
             handlePageClick(e);
+            adminChangePage && adminChangePage(e.selected + 1);
           }}
           pageRangeDisplayed={2}
           marginPagesDisplayed={1}
@@ -65,9 +77,12 @@ export default function PagePagination({
         breakLabel="..."
         onPageChange={(e) => {
           handlePageClick(e);
-          changePage(e.selected + 1);
-          console.log(e.selected + 1);
-          ScrollToTop();
+          if (filteredCars.length !== 0) {
+            handleFilter(e.selected + 1);
+          } else {
+            changePage && changePage(e.selected + 1);
+          }
+          adminChangePage && adminChangePage(e.selected + 1);
         }}
         pageRangeDisplayed={2}
         marginPagesDisplayed={1}
