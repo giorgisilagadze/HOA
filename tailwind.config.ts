@@ -16,6 +16,7 @@ const config: Config = {
     },
     screens: {
       md: { min: "375px" },
+      md600: { min: "600px" },
       sm: { min: "768px" },
       lg: { min: "1024px" },
       xl: { min: "1440px" },

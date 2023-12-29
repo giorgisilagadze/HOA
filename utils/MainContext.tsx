@@ -11,6 +11,8 @@ export const PrimaryContext = createContext({
   checkedFields: {},
   setCheckedFields: (checkedFields: CheckedFields[]) => {},
   handleFilter: (arg1: number) => {},
+  isSideFilterVisible: {},
+  setIsSideFilterVisible: (isSideFilterVisible: boolean) => {},
 });
 
 export default function MainContext({ children }: any) {
@@ -79,6 +81,7 @@ export default function MainContext({ children }: any) {
       checked: [],
     },
   ]);
+  const [isSideFilterVisible, setIsSideFilterVisible] = useState(false);
 
   const handleFilter = async (page: number) => {
     const checkedArr = checkedFields.map((item) => item.checked);
@@ -146,6 +149,8 @@ export default function MainContext({ children }: any) {
         checkedFields,
         setCheckedFields,
         handleFilter,
+        isSideFilterVisible,
+        setIsSideFilterVisible,
       }}
     >
       {children}

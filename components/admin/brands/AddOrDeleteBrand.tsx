@@ -28,6 +28,7 @@ export default function AddOrDeleteBrand({ isAdd }: Prop) {
                 title={""}
                 id={0}
                 filterFields={undefined}
+                // @ts-ignore
                 checkedFields={[]}
                 setCheckedFields={function (checkedFields: any[]): void {
                   throw new Error("Function not implemented.");
@@ -68,6 +69,7 @@ export default function AddOrDeleteBrand({ isAdd }: Prop) {
             title={""}
             id={0}
             filterFields={undefined}
+            // @ts-ignore
             checkedFields={[]}
             setCheckedFields={function (checkedFields: any[]): void {
               throw new Error("Function not implemented.");
@@ -98,6 +100,7 @@ export default function AddOrDeleteBrand({ isAdd }: Prop) {
                 title={""}
                 id={0}
                 filterFields={undefined}
+                // @ts-ignore
                 checkedFields={[]}
                 setCheckedFields={function (checkedFields: any[]): void {
                   throw new Error("Function not implemented.");

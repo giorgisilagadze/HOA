@@ -38,7 +38,7 @@ export default function Add() {
         <div className="w-full flex items-center">
           <input
             type="text"
-            className="w-[95%] p-2 bg-white rounded-tl-[5px] rounded-bl-[5px]"
+            className="w-[95%] p-2 bg-white rounded-tl-[5px] rounded-bl-[5px] outline-none"
             placeholder="ძებნა(ფირმა, მოდელი, კოდი)"
           />
           <div className="flex justify-center items-center w-[40px] h-[40px] bg-[#022FB0] text-white text-[20px] rounded-tr-[5px] rounded-br-[5px]">
@@ -54,7 +54,10 @@ export default function Add() {
           <div className="flex flex-col gap-4">
             {isLoading
               ? [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (
-                  <div className="w-full h-[64px] animated-background"></div>
+                  <div
+                    className="w-full h-[64px] animated-background"
+                    key={item}
+                  ></div>
                 ))
               : adminProducts?.data?.map((item: Product) => (
                   <CarComp key={item.id} car={item} />

@@ -7,7 +7,7 @@ export default function ContentComp() {
   const [isHovered, setIsHovered] = useState(false);
   return (
     <div
-      className="fixed top-[700px] right-[28px] z-[99]"
+      className="fixed top-[700px] right-[28px] z-[99] hidden lg:block"
       onMouseOver={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

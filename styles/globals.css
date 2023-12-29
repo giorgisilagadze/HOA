@@ -44,8 +44,17 @@ body {
 }
 
 .product-image {
-  width: calc(100% - 170px);
+  width: 100%;
 }
+
+@media screen and (min-width: 1440px) {
+  .product-image {
+    width: calc(100% - 170px);
+}
+
+}
+
+
 
 @font-face {
   font-family: dejavucaps;
@@ -99,4 +108,24 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.mySwiper .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  text-align: center;
+  line-height: 20px;
+  font-size: 12px;
+  color: #0f8960;
+  opacity: 1;
+  background: #fff;
+}
+
+.mySwiper .swiper-pagination-bullet-active {
+  color: #fff;
+  background: #022FB0;
+}
+
+.swiper-pagination-fraction .swiper-pagination-custom .swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullets .swiper-pagination-horizontal {
+  bottom: var(--swiper-pagination-bottom, 80px);
 }

@@ -4,10 +4,13 @@ import { useEffect, useState } from "react";
 
 import { IoIosSearch } from "react-icons/io";
 import { MdOutlineSupportAgent } from "react-icons/md";
+import { RxHamburgerMenu } from "react-icons/rx";
+
 import Language from "./Language";
 import RequestPopUp from "./RequestPopUp";
+import SideMenu from "./SideMenu";
 
-const nav: Nav[] = [
+export const nav: Nav[] = [
   {
     id: 1,
     title: "მთავარი",
@@ -25,22 +28,28 @@ export default function Header() {
   const [page, setPage] = useState(route.asPath);
   const [isRequested, setIsRequested] = useState(false);
 
+  const [isSideMenuVisible, setIsSideMenuVisible] = useState(false);
+
   useEffect(() => {
     setPage(route.pathname);
   }, [route.pathname]);
 
   return (
     <>
-      <header className="w-full px-[112px] py-[22px] flex justify-between items-center bg-white">
-        <div className="flex items-center gap-[100px]">
+      <header className="w-full xl:px-[112px] px-8 lg:py-[22px] py-4 flex justify-between items-center bg-white">
+        <RxHamburgerMenu
+          className="text-[24px] lg:hidden"
+          onClick={() => setIsSideMenuVisible(true)}
+        />
+        <div className="flex items-center xl:gap-[100px] gap-[30px]">
           <Link href="/">
             <img
               src="../images/logo.png"
               alt="logo"
-              className="w-[60px] cursor-pointer"
+              className="lg:w-[60px] cursor-pointer w-[46px]"
             />
           </Link>
-          <div className="flex gap-4 items-center">
+          <div className="lg:flex gap-4 items-center hidden">
             {nav.map((item: Nav) => (
               <Link
                 href={item.link}
@@ -60,7 +69,7 @@ export default function Header() {
             ))}
           </div>
         </div>
-        <div className="relative w-[37%]">
+        <div className="relative w-[37%] hidden lg:block">
           <input
             type="text"
             className="w-full py-[12px] px-6 rounded-[44px] text-[14px] leading-5 shadow-thin border border-[#EEE] outline-none"
@@ -70,7 +79,7 @@ export default function Header() {
         </div>
         <div className="flex items-center gap-2">
           <div
-            className="border-none py-[9px] px-[13px] text-white bg-[#022FB0] rounded-[30px] flex items-center gap-1 cursor-pointer hover:shadow-product duration-200"
+            className="border-none py-[9px] px-[13px] text-white bg-[#022FB0] rounded-[30px] lg:flex items-center gap-1 cursor-pointer hover:shadow-product duration-200 hidden "
             onClick={() => setIsRequested(true)}
           >
             <MdOutlineSupportAgent />
@@ -85,6 +94,14 @@ export default function Header() {
           setIsRequested={setIsRequested}
         />
       )}
+      <SideMenu
+        isSideMenuVisible={isSideMenuVisible}
+        setIsSideMenuVisible={setIsSideMenuVisible}
+        isRequested={isRequested}
+        setIsRequested={setIsRequested}
+        page={page}
+        setPage={setPage}
+      />
     </>
   );
 }

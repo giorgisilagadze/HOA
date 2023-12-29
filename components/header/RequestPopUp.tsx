@@ -20,6 +20,7 @@ export default function RequestPopUp({ isRequested, setIsRequested }: Prop) {
         `${process.env.NEXT_PUBLIC_API_URL}/front/customerQuestion`,
         formData
       );
+      setIsRequested(false);
       successToast("მოთხოვნა წარმატებით გაიგზავნა");
     } catch (err) {
       console.log(err);
@@ -34,7 +35,7 @@ export default function RequestPopUp({ isRequested, setIsRequested }: Prop) {
           setIsRequested(false);
         }}
       ></div>
-      <div className="w-[460px] h-[750px] py-5 overflow-y-auto bg-white rounded-tl-[20px] rounded-bl-[20px] z-[99]">
+      <div className="sm:w-[460px] w-full h-[750px] py-5 overflow-y-auto bg-white sm:rounded-tl-[20px] sm:rounded-bl-[20px] z-[99]">
         <div className="w-full py-[18px] px-6 flex justify-between items-center">
           <h1 className="text-[24px] leading-[32px] text-[#022FB0]">
             მოითხოვე მანქანა
@@ -53,8 +54,14 @@ export default function RequestPopUp({ isRequested, setIsRequested }: Prop) {
             <input
               type="text"
               className="w-full p-4 border-none outline-none bg-[#EEEEEE] rounded-[12px] shadow-input"
-              placeholder="სახელი, გვარი"
+              placeholder="მოდელის დასახელება"
               name="name"
+            />
+            <input
+              type="text"
+              className="w-full p-4 border-none outline-none bg-[#EEEEEE] rounded-[12px] shadow-input"
+              placeholder="სახელი, გვარი"
+              name="fname"
             />
             <input
               type="email"

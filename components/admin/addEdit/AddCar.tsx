@@ -133,7 +133,7 @@ export default function AddCar() {
             {item.title}
           </p>
           <FilterInput
-            width="full"
+            width="xl:w-full"
             ml="0"
             border="#c0bebe"
             title={""}
@@ -168,7 +168,7 @@ export default function AddCar() {
             {item.title}
           </p>
           <FilterInput
-            width="full"
+            width="xl:w-full"
             ml="0"
             border="#c0bebe"
             title={""}

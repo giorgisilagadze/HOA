@@ -3,19 +3,24 @@ import { IoIosArrowBack } from "react-icons/io";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
+import "swiper/css/pagination";
 
-import { Autoplay, Navigation } from "swiper/modules";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
 
 export default function Slider() {
+  const pagination = {
+    clickable: true,
+  };
   return (
     <div className="w-full h-[619px] relative">
-      <IoIosArrowBack className="text-[60px] text-white absolute top-[50%] left-10 translate-y-[-50%] z-[98] image-swiper-button-prev cursor-pointer" />
-      <IoIosArrowBack className="text-[60px] text-white absolute top-[50%] right-10 translate-y-[-50%] z-[98] rotate-180 image-swiper-button-next cursor-pointer" />
+      <IoIosArrowBack className="text-[60px] text-white absolute top-[50%] left-5 translate-y-[-50%] z-[98] image-swiper-button-prev cursor-pointer hidden lg:block" />
+      <IoIosArrowBack className="text-[60px] text-white absolute top-[50%] right-5 translate-y-[-50%] z-[98] rotate-180 image-swiper-button-next cursor-pointer hidden lg:block" />
       <Swiper
         // autoplay={{
         //   delay: 2000,
         // }}
-        modules={[Autoplay, Navigation]}
+        pagination={pagination}
+        modules={[Autoplay, Navigation, Pagination]}
         className="mySwiper h-full duration-200 w-full"
         loop={true}
         navigation={{
@@ -26,7 +31,7 @@ export default function Slider() {
         {[1, 2, 3].map((item) => (
           <SwiperSlide key={item}>
             <div className="relative h-full fullScreen">
-              <h1 className="xl:text-[55px] xl:leading-[70px] text-white absolute top-[230px] left-[112px] w-[650px]">
+              <h1 className="lg:text-[55px] lg:leading-[70px] text-[24px] sm:text-[40px] md600:text-[30px] leading-[40px] sm:leading-[60px] text-white absolute lg:top-[230px] lg:left-[112px] top-[40%] left-[30px] w-[90%] sm:w-[80%] xl:w-[650px]">
                 მანქანები კორეიდან შენს სახლამდე
               </h1>
             </div>

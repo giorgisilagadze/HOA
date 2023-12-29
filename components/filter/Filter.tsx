@@ -206,60 +206,63 @@ export default function Filter() {
   const [isClear, setIsClear] = useState(false);
   const [clickedFilter, setClickeFilter] = useState<number | null>(null);
 
-  console.log(isClear);
-
   return (
-    <div className="w-full flex flex-wrap items-center justify-end gap-2">
-      {filterProp.map((item) => (
-        <FilterInput
-          key={item.id}
-          width="[186px]"
-          ml="3"
-          border="#EEE"
-          title={item.title}
-          filterFields={item.filterFields}
-          isClear={isClear}
-          setIsClear={setIsClear}
-          id={item.id}
-          clickedFilter={clickedFilter}
-          setClickedFilter={setClickeFilter}
-        />
-      ))}
-      <button
-        className="w-[186px] h-[38px] py-2 bg-[#022FB0] rounded-[20px] flex justify-center items-center gap-2 border-none ml-3"
-        onClick={() => {
-          handleFilter(1);
-          if (route.pathname !== "/cars") {
-            route.push("/cars");
-          }
-        }}
-      >
-        <IoIosSearch className="text-[20px] text-white" />
-        <p className="text-white">ძიება</p>
-      </button>
-      <button
-        className="w-[186px] h-[38px] py-2 bg-[#D81111] rounded-[20px] flex justify-center items-center gap-2 border-none ml-3"
-        onClick={() => {
-          const updatedCheckedFields = checkedFields.map(
-            (item: CheckedFields) => ({
-              ...item,
-              checked: [],
-            })
-          );
-          setCheckedFields(updatedCheckedFields);
-          if (isClear) {
-            setIsClear(false);
-            setTimeout(() => {
+    <div className="w-full flex flex-col lg:flex-row xl:gap-2 lg:gap-0 gap-2">
+      <div className="w-full flex flex-wrap items-center justify-start xl:gap-2 lg:gap-3">
+        {filterProp.map((item) => (
+          <FilterInput
+            key={item.id}
+            width="xl:w-[248px]"
+            ml="3"
+            border="#EEE"
+            title={item.title}
+            filterFields={item.filterFields}
+            isClear={isClear}
+            setIsClear={setIsClear}
+            id={item.id}
+            clickedFilter={clickedFilter}
+            setClickedFilter={setClickeFilter}
+          />
+        ))}
+      </div>
+
+      <div className="flex flex-col gap-2 justify-center">
+        <button
+          className="lg:w-[186px] lg:h-[38px] w-[92%] h-[30px] lg:py-2 py-1 bg-[#022FB0] rounded-[20px] flex justify-center items-center gap-2 border-none xl:ml-3 ml-0"
+          onClick={() => {
+            handleFilter(1);
+            if (route.pathname !== "/cars") {
+              route.push("/cars");
+            }
+          }}
+        >
+          <IoIosSearch className="text-[20px] text-white" />
+          <p className="text-white">ძიება</p>
+        </button>
+        <button
+          className="lg:w-[186px] lg:h-[38px] w-[92%] h-[30px] lg:py-2 py-1 bg-[#D81111] rounded-[20px] flex justify-center items-center gap-2 border-none xl:ml-3 ml-0"
+          onClick={() => {
+            const updatedCheckedFields = checkedFields.map(
+              (item: CheckedFields) => ({
+                ...item,
+                checked: [],
+              })
+            );
+            setCheckedFields(updatedCheckedFields);
+            if (isClear) {
+              setIsClear(false);
+              setTimeout(() => {
+                setIsClear(true);
+              }, 50);
+            } else {
               setIsClear(true);
-            }, 50);
-          } else {
-            setIsClear(true);
-          }
-        }}
-      >
-        <MdDelete className="text-[20px] text-white" />
-        <p className="text-white">წაშლა</p>
-      </button>
+            }
+          }}
+        >
+          <MdDelete className="text-[20px] text-white" />
+          <p className="text-white">წაშლა</p>
+        </button>
+      </div>
     </div>
   );
 }

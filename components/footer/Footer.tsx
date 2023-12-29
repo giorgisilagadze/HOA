@@ -7,17 +7,17 @@ export const contact: Contact[] = [
   {
     id: 1,
     text: "#HoaCars",
-    icon: <FaTiktok className="text-[24px]" />,
+    icon: <FaTiktok className="lg:text-[24px] text-[10px]" />,
   },
   {
     id: 2,
     text: "#HoaCars __ 579 029 029",
-    icon: <FaWhatsapp className="text-[28px]" />,
+    icon: <FaWhatsapp className="lg:text-[28px] text-[10px]" />,
   },
   {
     id: 3,
     text: "#HoaCars",
-    icon: <FaFacebookF className="text-[24px]" />,
+    icon: <FaFacebookF className="lg:text-[24px] text-[10px]" />,
   },
 ];
 
@@ -35,12 +35,18 @@ export const phoneNumbs: PhoneNumb[] = [
 export default function Footer() {
   return (
     <footer className="w-full flex flex-col gap-6 pt-6 pb-2 bg-[#FBFBFA] justify-center items-center">
-      <img src="../images/logo.png" alt="logo" className="w-[97px]" />
+      <img
+        src="../images/logo.png"
+        alt="logo"
+        className="lg:w-[97px] w-[50px]"
+      />
       <div className="flex items-center gap-[26px]">
         {contact.map((item: Contact) => (
           <div className="flex flex-col gap-1 items-center" key={item.id}>
             {item.icon}
-            <p className="text-[14px] leading-[22px]">{item.text}</p>
+            <p className="text-[10px] leading-[16px] lg:text-[14px] lg:leading-[22px]">
+              {item.text}
+            </p>
           </div>
         ))}
       </div>
@@ -59,7 +65,7 @@ export default function Footer() {
       </div>
 
       <div className="flex flex-col gap-1">
-        <hr className="w-[520px] h-[1px] border-none bg-[#BBB]" />
+        <hr className="sm:w-[520px] w-full h-[1px] border-none bg-[#BBB]" />
         <div className="flex items-center gap-1 justify-center">
           <p className="text-[14px] leading-[22px]">All rights are reserved.</p>
           <div className="flex items-center">

@@ -96,9 +96,11 @@ export default function FilterInput({
   }, [isClear]);
 
   return (
-    <div className={`w-${width} h-[38px] relative ml-${ml} select-none`}>
+    <div
+      className={`${width} lg:w-[220px] w-[92%] lg:h-[38px] h-[28px] relative lg:ml-${ml} ml-0 select-none`}
+    >
       <div
-        className={`w-full h-full py-[7px] pl-2 px-8 rounded-[4px] border border-[${border}] cursor-pointer`}
+        className={`w-full h-full lg:py-[7px] py-1 pl-2 pr-8 rounded-[4px] border border-[${border}] cursor-pointer`}
         onClick={() => {
           if (clickedFilter === id) {
             setClickedFilter(null);
@@ -107,12 +109,12 @@ export default function FilterInput({
           }
         }}
       >
-        <p className="text-[14px] leading-[22px] w-full overflow-x-auto">
+        <p className="lg:text-[14px] lg:leading-[22px] text-[12px] leading-4 w-full overflow-x-auto">
           {title}
         </p>
       </div>
       <TiArrowSortedDown
-        className={`text-[24px] text-blue-800 absolute top-[8px] right-2 cursor-pointer ${
+        className={`text-[24px] text-blue-800 absolute lg:top-[8px] top-1 right-2 cursor-pointer ${
           clickedFilter === id && "rotate-180"
         } duration-200`}
         onClick={() => {
@@ -126,7 +128,7 @@ export default function FilterInput({
       <div
         className={`${
           clickedFilter === id ? ` py-1 px-1 border border-[${border}]` : "h-0"
-        } bg-white absolute z-[99] top-[40px] rounded-[4px] left-0 w-full duration-100 overflow-y-auto`}
+        } bg-white absolute z-[99] lg:top-[40px] top-[35px] rounded-[4px] left-0 w-full duration-100 overflow-y-auto`}
         style={{
           height: clickedFilter == id ? `${divHeight + 15}px` : "0px",
         }}

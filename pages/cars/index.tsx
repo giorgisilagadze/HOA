@@ -8,6 +8,8 @@ import LoadingCard from "@/components/productCards/LoadingCard";
 import { useRouter } from "next/router";
 import PagePagination from "@/components/PagePagination";
 import { PrimaryContext } from "@/utils/MainContext";
+import { FaFilter } from "react-icons/fa";
+import SideFilter from "@/components/productPage/SideFilter";
 
 export default function Cars() {
   const {
@@ -16,6 +18,8 @@ export default function Cars() {
     isLoading,
     setIsLoading,
     handleFilter,
+    isSideFilterVisible,
+    setIsSideFilterVisible,
   }: any = useContext(PrimaryContext);
   const [page, setPage] = useState(1);
   const [products, setProducts] = useState<AllProducts | any>();
@@ -73,15 +77,21 @@ export default function Cars() {
     // }
   }, [page]);
 
-  console.log(filteredCars);
-
   return (
-    <div className="w-full px-[56px] flex justify-center py-6">
-      <div className="w-full max-w-[1328px] bg-white rounded-[30px] py-8 flex flex-col gap-[48px]">
-        <div className="pl-[44px] pr-[56px]">
+    <div className="w-full lg:px-[56px] px-4 flex justify-center py-6">
+      <div className="w-full xl:max-w-[1328px] lg:max-w-[950px] bg-white rounded-[30px] lg:py-8 py-4 flex flex-col lg:gap-[48px] gap-4">
+        <div className="xl:pl-[44px] xl:pr-[56px] px-4 hidden lg:block">
           <Filter />
         </div>
-        <div className="w-full px-[56px] flex flex-col items-center gap-8  ">
+        <div className="flex w-full justify-end lg:hidden px-4">
+          <div
+            className="rounded-[27px] lg:hidden flex justify-center items-center gap-1 border bg-[#022FB0] text-white lg:py-2 lg:px-[22px] py-1 px-1 cursor-pointer hover:bg-[#022FB0] hover:text-white duration-200"
+            onClick={() => setIsSideFilterVisible(true)}
+          >
+            <FaFilter className="text-[12px]" />
+          </div>
+        </div>
+        <div className="w-full xl:px-[56px] px-4 flex flex-col items-center gap-8  ">
           <PagePagination
             dataLength={
               filteredCars.length !== 0 ? filteredCars.total : products?.total
@@ -114,29 +124,8 @@ export default function Cars() {
             </div>
           </PagePagination>
         </div>
-
-        {/* <div className=" mx-auto mt-[-24px] flex items-center gap-1">
-          <TiArrowSortedDown
-            className="text-[28px] text-[#022FB0] rotate-90 cursor-pointer select-none"
-            onClick={() => {
-              if (page !== 1) setPage(page - 1);
-              ScrollToTop();
-            }}
-          />
-          <p className="text-[#717171] underline">
-            {page} / {Math.ceil(products && products.total / 20)}
-          </p>
-          <TiArrowSortedDown
-            className="text-[28px] text-[#022FB0] -rotate-90 cursor-pointer select-none"
-            onClick={() => {
-              if (page !== Math.ceil(products.total / 20)) {
-                setPage(page + 1);
-                ScrollToTop();
-              }
-            }}
-          />
-        </div> */}
       </div>
+      <SideFilter />
     </div>
   );
 }
