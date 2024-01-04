@@ -2,6 +2,7 @@ import PagePagination from "@/components/PagePagination";
 import AddCar from "@/components/admin/addEdit/AddCar";
 import CarComp from "@/components/admin/addEdit/CarComp";
 import FileInput from "@/components/admin/addEdit/FileInput";
+import SideAddCar from "@/components/admin/addEdit/SideAddCar";
 import FilterInput from "@/components/filter/FilterInput";
 import axiosClient from "@/utils/AxiosClients";
 import { PrimaryContext } from "@/utils/MainContext";
@@ -13,6 +14,7 @@ export default function Add() {
   const { setIsLoading, isLoading } = useContext(PrimaryContext);
   const [page, setPage] = useState(1);
   const [adminProducts, setAdminProducts] = useState<AllProducts | any>();
+  const [isSideAddCarVisible, setIsSideAddCarVisible] = useState(false);
 
   const changePage = async (page: number) => {
     setIsLoading(true);
@@ -33,8 +35,10 @@ export default function Add() {
     changePage(page);
   }, [page]);
   return (
-    <div className={`custom-width py-[30px] px-8 flex items-start gap-5`}>
-      <div className="w-[65%] flex flex-col gap-7">
+    <div
+      className={`custom-width w-full py-[30px] px-8 flex items-start gap-5`}
+    >
+      <div className="sm:w-[65%] w-full flex flex-col gap-7">
         <div className="w-full flex items-center">
           <input
             type="text"
@@ -45,6 +49,13 @@ export default function Add() {
             <IoIosSearch />
           </div>
         </div>
+        <button
+          className="rounded-[12px] bg-[#022FB0] px-3 py-3 text-white text-[14px] leading-[22px] sm:hidden
+        "
+          onClick={() => setIsSideAddCarVisible(true)}
+        >
+          მანქანის დამატება
+        </button>
         <PagePagination
           dataLength={adminProducts?.total}
           itemsPerPage={20}
@@ -65,9 +76,13 @@ export default function Add() {
           </div>
         </PagePagination>
       </div>
-      <div className="w-[35%] h-[700px] rounded-[12px] bg-white p-5 overflow-y-auto flex flex-col gap-2">
+      <div className="w-[35%] h-[700px] rounded-[12px] bg-white p-5 overflow-y-auto flex-col gap-2 hidden sm:flex">
         <AddCar />
       </div>
+      <SideAddCar
+        isSideAddCarVisible={isSideAddCarVisible}
+        setIsSideAddCarVisible={setIsSideAddCarVisible}
+      />
     </div>
   );
 }

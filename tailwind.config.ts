@@ -19,6 +19,7 @@ const config: Config = {
       md600: { min: "600px" },
       sm: { min: "768px" },
       lg: { min: "1024px" },
+      lg1110: { min: "1110px" },
       xl: { min: "1440px" },
       xxl: { min: "1820px" },
     },

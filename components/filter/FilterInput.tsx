@@ -97,7 +97,7 @@ export default function FilterInput({
 
   return (
     <div
-      className={`${width} lg:w-[220px] w-[92%] lg:h-[38px] h-[28px] relative lg:ml-${ml} ml-0 select-none`}
+      className={`${width} lg:h-[38px] h-[28px] relative lg:ml-${ml} ml-0 select-none`}
     >
       <div
         className={`w-full h-full lg:py-[7px] py-1 pl-2 pr-8 rounded-[4px] border border-[${border}] cursor-pointer`}

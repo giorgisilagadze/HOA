@@ -1,15 +1,25 @@
 import FileInput from "@/components/admin/addEdit/FileInput";
+import SideAddVideo from "@/components/admin/addVideo/SideAddVideo";
 import ViodeComp from "@/components/admin/addVideo/VideoComp";
+import { useState } from "react";
 
 export default function Brands() {
+  const [isSideAddVideoVisible, setIsSideAddVideoVisible] = useState(false);
   return (
-    <div className="custom-width py-[40px] px-8 flex items-start gap-5">
-      <div className="w-[65%] flex flex-col gap-5">
+    <div className="custom-width w-full py-[40px] sm:px-8 px-5 flex flex-col sm:flex-row items-end sm:items-start gap-5 justify-between lg:justify-start">
+      <button
+        className="rounded-[12px] bg-[#022FB0] px-3 py-3 text-white text-[14px] leading-[22px] sm:hidden
+        "
+        onClick={() => setIsSideAddVideoVisible(true)}
+      >
+        მანქანის დამატება
+      </button>
+      <div className="lg:w-[65%] sm:w-[55%] w-full duration-200 flex flex-col gap-5">
         {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
           <ViodeComp key={item} />
         ))}
       </div>
-      <div className="w-[35%] h-[700px] rounded-[12px] bg-white p-5 overflow-y-auto">
+      <div className="lg:w-[35%] w-[40%] hidden sm:block h-[700px] rounded-[12px] bg-white p-5 overflow-y-auto">
         <FileInput isVideo={true} />
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-1">
@@ -38,6 +48,10 @@ export default function Brands() {
           </div>
         </div>
       </div>
+      <SideAddVideo
+        isSideAddVideoVisible={isSideAddVideoVisible}
+        setIsSideAddVideoVisible={setIsSideAddVideoVisible}
+      />
     </div>
   );
 }

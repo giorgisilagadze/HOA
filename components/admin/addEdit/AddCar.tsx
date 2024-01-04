@@ -1,53 +1,7 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import FilterInput from "../../filter/FilterInput";
 import FileInput from "./FileInput";
-
-const addcar = [
-  {
-    id: 1,
-    title: "ქვეყანა",
-  },
-  {
-    id: 2,
-    title: "ფირმა",
-  },
-  {
-    id: 3,
-    title: "მოდელი",
-  },
-  {
-    id: 4,
-    title: "ძრავი",
-  },
-  {
-    id: 5,
-    title: "გარბენი",
-  },
-  {
-    id: 6,
-    title: "საწვავის ტიპი",
-  },
-  {
-    id: 7,
-    title: "წამყვანი თვლები",
-  },
-  {
-    id: 8,
-    title: "წელი",
-  },
-  {
-    id: 9,
-    title: "ტრანსმისია",
-  },
-  {
-    id: 10,
-    title: "ფერი",
-  },
-  {
-    id: 11,
-    title: "ფასი",
-  },
-];
+import { PrimaryContext } from "@/utils/MainContext";
 
 const wheel = ["მარცხენა", "მარჯვენა"];
 const salonColorOptions = [
@@ -105,6 +59,9 @@ const vehicleTypeOptions = [
 ];
 
 export default function AddCar() {
+  const { checkedFields, setCheckedFields }: any = useContext(PrimaryContext);
+  const [isClear, setIsClear] = useState(false);
+  const [clickedFilter, setClickeFilter] = useState<number | null>(null);
   const [engineFields, setEngineFields] = useState<null | Array<string>>(null);
   const [yearFields, setYearFields] = useState<null | Array<number>>(null);
   const arrayRangeFloat = (start: number, stop: number, step: number) =>
@@ -124,34 +81,75 @@ export default function AddCar() {
     let tmp2 = arrayRangeInt(1990, parseInt(currentYear), 1);
     setYearFields(tmp2);
   }, []);
+
+  const filterProp = [
+    {
+      id: 1,
+      title: "ბრენდი",
+      filterFields: ["bmw", "mercedes", "porsche", "audi", "nissan", "Kia"],
+    },
+    {
+      id: 2,
+      title: "მოდელი",
+      filterFields: ["e46", "f10", "laferari", "cl", "xtera"],
+    },
+    {
+      id: 5,
+      title: "ტრანსმისია",
+      filterFields: transitionOptions,
+    },
+    {
+      id: 6,
+      title: "ძრავი",
+      filterFields: engineFields,
+    },
+    {
+      id: 7,
+      title: "საწვავის ტიპი",
+      filterFields: petrolOptions,
+    },
+    {
+      id: 8,
+      title: "საჭე",
+      filterFields: wheel,
+    },
+    {
+      id: 10,
+      title: "ფერი",
+      filterFields: colorOptions,
+    },
+    {
+      id: 11,
+      title: "წამყვანი თვლები",
+      filterFields: pullingWheelsOptions,
+    },
+    {
+      id: 12,
+      title: "ტიპი",
+      filterFields: vehicleTypeOptions,
+    },
+  ];
+  console.log(checkedFields);
+
   return (
     <div className="flex flex-col gap-3">
       <FileInput isVideo={false} />
-      {addcar.slice(0, 4).map((item) => (
+      {filterProp.slice(0, 4).map((item) => (
         <div className="flex flex-col gap-1" key={item.id}>
           <p className="text-[#787d87] text-[14px] leading-[22px]">
             {item.title}
           </p>
           <FilterInput
-            width="xl:w-full"
+            width="w-full"
             ml="0"
             border="#c0bebe"
             title={""}
-            filterFields={[]}
-            id={0}
-            // @ts-ignore
-            checkedFields={[]}
-            setCheckedFields={function (checkedFields: any[]): void {
-              throw new Error("Function not implemented.");
-            }}
-            isClear={false}
-            setIsClear={function (isClear: boolean): void {
-              throw new Error("Function not implemented.");
-            }}
-            clickedFilter={null}
-            setClickedFilter={function (clickedFilter: number | null): void {
-              throw new Error("Function not implemented.");
-            }}
+            filterFields={item.filterFields}
+            id={item.id}
+            isClear={isClear}
+            setIsClear={setIsClear}
+            clickedFilter={clickedFilter}
+            setClickedFilter={setClickeFilter}
           />
         </div>
       ))}
@@ -162,31 +160,29 @@ export default function AddCar() {
           className="w-full rounded-[4px] border border-[#c0bebe] py-[7px] px-2 outline-none"
         />
       </div>
-      {addcar.slice(5, 10).map((item) => (
+      <div className="flex flex-col gap-1">
+        <p className="text-[#787d87] text-[14px] leading-[22px]">წელი </p>
+        <input
+          type="text"
+          className="w-full rounded-[4px] border border-[#c0bebe] py-[7px] px-2 outline-none"
+        />
+      </div>
+      {filterProp.slice(5, 10).map((item) => (
         <div className="flex flex-col gap-1" key={item.id}>
           <p className="text-[#787d87] text-[14px] leading-[22px]">
             {item.title}
           </p>
           <FilterInput
-            width="xl:w-full"
+            width="w-full"
             ml="0"
             border="#c0bebe"
             title={""}
-            filterFields={[]}
-            id={0}
-            // @ts-ignore
-            checkedFields={[]}
-            setCheckedFields={function (checkedFields: any[]): void {
-              throw new Error("Function not implemented.");
-            }}
-            isClear={false}
-            setIsClear={function (isClear: boolean): void {
-              throw new Error("Function not implemented.");
-            }}
-            clickedFilter={null}
-            setClickedFilter={function (clickedFilter: number | null): void {
-              throw new Error("Function not implemented.");
-            }}
+            filterFields={item.filterFields}
+            id={item.id}
+            isClear={isClear}
+            setIsClear={setIsClear}
+            clickedFilter={clickedFilter}
+            setClickedFilter={setClickeFilter}
           />
         </div>
       ))}

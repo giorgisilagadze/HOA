@@ -208,11 +208,11 @@ export default function Filter() {
 
   return (
     <div className="w-full flex flex-col lg:flex-row xl:gap-2 lg:gap-0 gap-2">
-      <div className="w-full flex flex-wrap items-center justify-start xl:gap-2 lg:gap-3">
+      <div className="w-full flex flex-wrap items-center justify-start xl:gap-2 lg:gap-3 gap-2">
         {filterProp.map((item) => (
           <FilterInput
             key={item.id}
-            width="xl:w-[248px]"
+            width="xl:w-[248px] lg:w-[220px] w-[92%]"
             ml="3"
             border="#EEE"
             title={item.title}

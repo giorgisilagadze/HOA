@@ -6,7 +6,7 @@ interface Prop {
 
 export default function AddOrDeleteBrand({ isAdd }: Prop) {
   return (
-    <div className="w-[80%] p-5 bg-white rounded-[12px] flex flex-col gap-4">
+    <div className="sm:w-[80%] w-full p-5 bg-white rounded-[12px] flex flex-col gap-4">
       <p className="text-[#787d87]">ფირმების დამატება</p>
       <div className="flex flex-col gap-2">
         <hr className="w-full h-[1px] border-none bg-slate-300" />
@@ -18,11 +18,11 @@ export default function AddOrDeleteBrand({ isAdd }: Prop) {
             {isAdd ? (
               <input
                 type="text"
-                className="w-[95%] rounded-[4px] border border-[#c0bebe] py-[7px] px-2 outline-none"
+                className="w-[95%] rounded-[4px] border border-[#c0bebe] h-[28px] lg:h-auto py-[7px] px-2 outline-none"
               />
             ) : (
               <FilterInput
-                width="[95%]"
+                width="w-[95%]"
                 ml="0"
                 border="#c0bebe"
                 title={""}
@@ -46,7 +46,7 @@ export default function AddOrDeleteBrand({ isAdd }: Prop) {
               />
             )}
             <button
-              className={`p-[9px] rounded-[12px] text-white text-[14px] leading-[22px] ${
+              className={`lg:p-[9px] p-[6px] lg:rounded-[12px] rounded-[6px] text-white lg:text-[14px] text-[12px] lg:leading-[22px] leading-4 ${
                 isAdd ? "bg-[#022FB0]" : "bg-[red]"
               }`}
             >
@@ -63,7 +63,7 @@ export default function AddOrDeleteBrand({ isAdd }: Prop) {
             აირჩიეთ ფირმა
           </p>
           <FilterInput
-            width="full"
+            width="w-full"
             ml="0"
             border="#c0bebe"
             title={""}
@@ -90,11 +90,11 @@ export default function AddOrDeleteBrand({ isAdd }: Prop) {
             {isAdd ? (
               <input
                 type="text"
-                className="w-[95%] rounded-[4px] border border-[#c0bebe] py-[7px] px-2 outline-none"
+                className="w-[95%] rounded-[4px] border border-[#c0bebe] h-[28px] lg:h-auto py-[7px] px-2 outline-none"
               />
             ) : (
               <FilterInput
-                width="[95%]"
+                width="w-[95%]"
                 ml="0"
                 border="#c0bebe"
                 title={""}
@@ -118,7 +118,7 @@ export default function AddOrDeleteBrand({ isAdd }: Prop) {
               />
             )}
             <button
-              className={`p-[9px] rounded-[12px] text-white text-[14px] leading-[22px] ${
+              className={`lg:p-[9px] p-[6px] lg:rounded-[12px] rounded-[6px] text-white lg:text-[14px] text-[12px] lg:leading-[22px] leading-4 ${
                 isAdd ? "bg-[#022FB0]" : "bg-[red]"
               }`}
             >

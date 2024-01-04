@@ -5,8 +5,8 @@ import { FaUser } from "react-icons/fa6";
 
 export default function Brands() {
   return (
-    <div className="custom-width h-[100%] py-8 flex flex-col items-center">
-      <div className="w-[70%] rounded-[12px] bg-white p-6">
+    <div className="custom-width w-full h-[100%] py-8 sm:px-0 px-8 flex flex-col items-center">
+      <div className="sm:w-[70%] w-full rounded-[12px] bg-white p-6">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-5">
             <img src="../images/logo.png" alt="logo" className="w-10 h-10" />
