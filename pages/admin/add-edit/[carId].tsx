@@ -32,6 +32,7 @@ export default function EditCar() {
       <h1>Dynamic Page</h1>
       <p>Slug: {carId}</p>
       <p>{oneCar?.name}</p>
+      <p>{oneCar?.color}</p>
     </div>
   );
 }
